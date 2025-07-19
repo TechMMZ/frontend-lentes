@@ -20,13 +20,13 @@ export default function HeroBackground() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <img
-        src={`${baseUrl}${heroData.fondoGrande}`}
+        src={`${baseUrl}${heroData.fondo_grande}`}
         alt=""
         aria-hidden="true"
         className="hidden md:block absolute inset-0 w-full h-full object-cover object-center z-0"
       />
       <img
-        src={`${baseUrl}${heroData.fondoPequeno}`}
+        src={`${baseUrl}${heroData.fondo_pequeno}`}
         alt=""
         aria-hidden="true"
         className="block md:hidden absolute inset-0 w-full h-full object-cover object-center z-0"
