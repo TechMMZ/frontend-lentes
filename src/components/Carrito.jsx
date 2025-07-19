@@ -33,6 +33,27 @@ function Carrito() {
         return encodeURIComponent(mensaje);
     };
 
+    const pagarConTarjeta = async () => {
+        try {
+            const response = await fetch(`${API_URL}/pago`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ carrito }),
+            });
+
+            const data = await response.json();
+
+            if (data.init_point) {
+                window.location.href = data.init_point; // Redirige a Mercado Pago
+            } else {
+                alert('Error iniciando el pago');
+            }
+        } catch (error) {
+            console.error('Error al pagar:', error);
+            alert('Hubo un problema al procesar el pago.');
+        }
+    };
+
     return (
         <div className="pt-24 px-4 max-w-7xl mx-auto min-h-screen">
             <h1 className="text-3xl font-bold mb-6">
@@ -138,9 +159,9 @@ function Carrito() {
                                 disabled={carrito.length === 0}
                                 className={`w-full py-3 rounded-lg text-white bg-blue-600 hover:bg-blue-700 ${carrito.length === 0 ? "opacity-50 cursor-not-allowed hover:bg-blue-600" : ""
                                     }`}
-                                onClick={() => navigate("/pago-tarjeta")}
+                                onClick={pagarConTarjeta}
                             >
-                                Pagar con Tarjeta
+                                Pagar con Tarjeta (Mercado Pago)
                             </button>
 
                             <button
