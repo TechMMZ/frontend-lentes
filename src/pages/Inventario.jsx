@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { jsPDF } from 'jspdf';
@@ -8,9 +9,10 @@ import {
 } from 'recharts';
 import { Bell } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+const API_URL = import.meta.env.VITE_API_URL;
 
-const API_URL = 'http://localhost:7500/api/productos';
-const IMG_BASE_URL = 'http://localhost:7500/img/';
+const API_BASE = `${API_URL}/api/productos`;
+const IMG_BASE_URL = `${API_URL}/img/`;
 const colores = [
   '#6366F1', '#10B981', '#F59E0B', '#EF4444', '#3B82F6', '#8B5CF6', '#F472B6',
   '#22D3EE', '#34D399', '#FCD34D', '#F87171', '#60A5FA', '#E879F9', '#A78BFA',
@@ -48,7 +50,7 @@ const Inventario = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(API_URL)
+    axios.get(API_BASE)
       .then(res => setProductos(res.data))
       .catch(err => console.error('Error al obtener productos', err));
   }, []);

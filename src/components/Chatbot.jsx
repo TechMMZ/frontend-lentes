@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaComments, FaTimes } from 'react-icons/fa';
+const API_URL = import.meta.env.VITE_API_URL;
 
-const IMG_BASE_URL = "http://localhost:7500/img/";
+const IMG_BASE_URL = `${API_URL}/img/`;
 
 export default function Chatbot() {
     const [messages, setMessages] = useState([]);
@@ -38,7 +39,7 @@ export default function Chatbot() {
         setSelectedOptionIndex(null);
 
         try {
-            const res = await fetch('http://localhost:7500/api/chatbot', {
+            const res = await fetch(`${API_URL}/api/chatbot`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId, message: userMessage }),

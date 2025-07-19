@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FaTrashAlt } from 'react-icons/fa';
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Clientes() {
     const [clientes, setClientes] = useState([]);
@@ -18,7 +19,7 @@ function Clientes() {
     useEffect(() => {
         const fetchClientes = async () => {
             try {
-                const response = await axios.get('http://localhost:7500/api/auth/clientes', {
+                const response = await axios.get(`${API_URL}/api/auth/clientes`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
@@ -58,7 +59,7 @@ function Clientes() {
         if (!resultado.isConfirmed) return;
 
         try {
-            await axios.delete(`http://localhost:7500/api/auth/clientes/${id}`, {
+            await axios.delete(`${API_URL}/api/auth/clientes/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 

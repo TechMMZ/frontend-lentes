@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
-const API_URL = "http://localhost:7500/api/productos";
-const IMG_BASE_URL = "http://localhost:7500/img/";
+const API_BASE = `${API_URL}/api/productos`;
+const IMG_BASE_URL = `${API_URL}/img/`;
 
 const SECCIONES_MOSTRAR = ["lo_nuevo", "mas_vendidos", "final_sale"];
 
@@ -14,7 +15,7 @@ const SectionsGallery = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(API_URL)
+    fetch(API_BASE)
       .then((res) => {
         if (!res.ok) throw new Error(`Error en la respuesta: ${res.status}`);
         return res.json();

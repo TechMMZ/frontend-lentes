@@ -1,7 +1,10 @@
+/* eslint-disable no-empty */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AgregarProducto = () => {
     const [secciones, setSecciones] = useState([]);
@@ -30,7 +33,7 @@ const AgregarProducto = () => {
     useEffect(() => {
         const obtenerSecciones = async () => {
             try {
-                const res = await fetch('http://localhost:7500/api/secciones');
+                const res = await fetch(`${API_URL}/api/secciones`);
                 if (!res.ok) throw new Error(`Error ${res.status}`);
                 const data = await res.json();
                 setSecciones(data || []);
@@ -95,7 +98,7 @@ const AgregarProducto = () => {
             formData.append('imagen_1', data.imagen_1[0]);
             formData.append('imagen_2', data.imagen_2[0]);
 
-            const res = await fetch('http://localhost:7500/api/productos', {
+            const res = await fetch(`${API_URL}/api/productos`, {
                 method: 'POST',
                 body: formData,
             });

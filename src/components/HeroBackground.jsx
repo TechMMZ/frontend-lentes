@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function HeroBackground() {
   const [heroData, setHeroData] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:7500/api/hero-background')
+    fetch(`${API_URL}/api/hero-background`)
       .then(res => res.json())
       .then(data => setHeroData(data))
       .catch(err => console.error('Error cargando HeroBackground:', err));
@@ -14,7 +15,7 @@ export default function HeroBackground() {
     return <p>Cargando...</p>;
   }
 
-  const baseUrl = 'http://localhost:7500/uploads/';
+  const baseUrl = `${API_URL}/uploads/`;
 
   return (
     <div className="relative w-full h-screen overflow-hidden">

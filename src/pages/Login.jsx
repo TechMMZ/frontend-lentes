@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { UserContext } from './UserContext';
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ function Login() {
   useEffect(() => {
     const checkAdmin = async () => {
       try {
-        const res = await fetch('http://localhost:7500/api/auth/admin-existe');
+        const res = await fetch(`${API_URL}/api/auth/admin-existe`);
         const data = await res.json();
         setAdminExiste(data.existe);
       } catch (err) {
@@ -58,7 +59,7 @@ function Login() {
     }
 
     try {
-      const res = await fetch('http://localhost:7500/api/auth/login', {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -92,7 +93,7 @@ function Login() {
     }
 
     try {
-      const res = await fetch('http://localhost:7500/api/auth/register', {
+      const res = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, apellidos, email, password, celular, dni, role }),

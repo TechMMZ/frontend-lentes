@@ -5,8 +5,9 @@ import { PiEyeglassesBold } from "react-icons/pi";
 import { Plus, Minus, CheckCircle2 } from "lucide-react";
 import { useCarrito } from "../components/CarritoContext";
 import { UserContext } from "../pages/UserContext";
+const API_URL = import.meta.env.VITE_API_URL;
 
-const IMG_BASE_URL = "http://localhost:7500/img/";
+const IMG_BASE_URL = `${API_URL}/img/`;
 
 const ModalCarrito = ({ producto, cantidad, onCerrar, onAumentar, onDisminuir, onIrCarrito }) => {
   if (!producto) return null;
@@ -100,7 +101,7 @@ const ProductDetail = () => {
     (async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:7500/api/productos/${id}`);
+        const res = await fetch(`${API_URL}/api/productos/${id}`);
         if (!res.ok) throw new Error("Producto no encontrado");
         const data = await res.json();
         setProduct(data);

@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaEdit, FaTrashAlt, FaTimes, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+const API_URL = import.meta.env.VITE_API_URL;
 
-const API_URL_SECCIONES = 'http://localhost:7500/api/secciones';
-const API_URL_PRODUCTOS = 'http://localhost:7500/api/productos';
-const IMG_BASE_URL = 'http://localhost:7500/img/';
+const API_URL_SECCIONES = `${API_URL}/api/secciones`;
+const API_URL_PRODUCTOS = `${API_URL}/api/productos`;
+const IMG_BASE_URL = `${API_URL}/img/`;
 
 const VerProductos = () => {
     const navigate = useNavigate();

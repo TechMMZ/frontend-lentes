@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from 'react-router-dom'; // 👈 Agregado
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Categoria() {
     const [productos, setProductos] = useState([]);
@@ -27,7 +28,7 @@ function Categoria() {
 
     const obtenerSecciones = async () => {
         try {
-            const res = await axios.get('http://localhost:7500/api/productos');
+            const res = await axios.get(`${API_URL}/api/productos`);
             const todas = res.data.map(p => p.seccion);
             const unicas = [...new Set(todas)];
             setSecciones(unicas);
@@ -38,7 +39,7 @@ function Categoria() {
 
     const obtenerProductosPorSeccion = async (seccion) => {
         try {
-            const res = await axios.get(`http://localhost:7500/api/productos/seccion/${seccion}`);
+            const res = await axios.get(`${API_URL}/api/productos/seccion/${seccion}`);
             setProductos(res.data);
             setPaginaActual(1);
         } catch (err) {
@@ -140,7 +141,7 @@ function Categoria() {
                                     <td className="p-2 border">{producto.nombre}</td>
                                     <td className="p-2 border">
                                         <img
-                                            src={`http://localhost:7500/img/${producto.imagen_1}`}
+                                            src={`${API_URL}/img/${producto.imagen_1}`}
                                             alt={producto.nombre}
                                             className="w-14 h-14 object-contain mx-auto"
                                         />

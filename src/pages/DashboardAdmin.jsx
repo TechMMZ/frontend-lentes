@@ -15,6 +15,7 @@ import {
   ChevronRightIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/outline';
+const API_URL = import.meta.env.VITE_API_URL;
 
 function DashboardAdmin() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function DashboardAdmin() {
     try {
       const token = localStorage.getItem('token');
       if (token) {
-        await fetch('http://localhost:7500/api/auth/logout', {
+        await fetch(`${API_URL}/api/auth/logout`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`,

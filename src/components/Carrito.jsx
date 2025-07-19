@@ -4,6 +4,7 @@ import { useCarrito } from "./CarritoContext";
 import { Dialog, Transition } from "@headlessui/react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../pages/UserContext";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Carrito() {
     const navigate = useNavigate();
@@ -52,7 +53,7 @@ function Carrito() {
                                     className="border rounded-xl shadow p-4 flex flex-wrap sm:flex-nowrap items-center gap-4 bg-white"
                                 >
                                     <img
-                                        src={`http://localhost:7500/img/${item.imagen}`}
+                                        src={`${API_URL}/img/${item.imagen}`}
                                         alt={item.nombre}
                                         className="w-24 h-24 object-contain rounded-lg"
                                     />

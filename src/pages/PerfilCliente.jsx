@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../pages/UserContext";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaShoppingCart, FaCog, FaSignOutAlt } from "react-icons/fa";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function PerfilCliente() {
   const { user, logoutUser } = useContext(UserContext);
@@ -18,7 +19,7 @@ function PerfilCliente() {
     const token = localStorage.getItem("token");
     if (token) {
       try {
-        await fetch("http://localhost:7500/api/auth/logout", {
+        await fetch(`${API_URL}/api/auth/logout`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

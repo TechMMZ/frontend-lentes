@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Estilos custom para el toast con color #161e51
 const customToastStyle = {
@@ -37,7 +38,7 @@ export default function HeroBackgroundEdit() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const res = await fetch('http://localhost:7500/api/hero-background');
+        const res = await fetch(`${API_URL}/api/hero-background`);
         if (!res.ok) throw new Error('Error cargando datos');
         const data = await res.json();
 
@@ -50,9 +51,9 @@ export default function HeroBackgroundEdit() {
         });
 
         setPreview({
-          fondoGrande: data.fondoGrande ? `http://localhost:7500/uploads/${data.fondoGrande}` : null,
-          fondoPequeno: data.fondoPequeno ? `http://localhost:7500/uploads/${data.fondoPequeno}` : null,
-          anuncio: data.anuncio ? `http://localhost:7500/uploads/${data.anuncio}` : null,
+          fondoGrande: data.fondoGrande ? `${API_URL}/uploads/${data.fondoGrande}` : null,
+          fondoPequeno: data.fondoPequeno ? `${API_URL}/uploads/${data.fondoPequeno}` : null,
+          anuncio: data.anuncio ? `${API_URL}/uploads/${data.anuncio}` : null,
         });
       } catch (error) {
         toast.error('Error cargando datos', {
@@ -116,7 +117,7 @@ export default function HeroBackgroundEdit() {
       if (form.fondoPequeno) formData.append('fondoPequeno', form.fondoPequeno);
       if (form.anuncio) formData.append('anuncio', form.anuncio);
 
-      const res = await fetch('http://localhost:7500/api/hero-background', {
+      const res = await fetch(`${API_URL}/api/hero-background`, {
         method: 'PUT',
         body: formData,
       });

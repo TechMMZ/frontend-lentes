@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FaTh } from 'react-icons/fa';
+const API_URL = import.meta.env.VITE_API_URL;
 
-const API_BASE = 'http://localhost:7500/api/productos';
-const IMG_BASE_URL = 'http://localhost:7500/img/';
+const API_BASE = `${API_URL}/api/productos`;
+const IMG_BASE_URL = `${API_URL}/img/`;
 const PRODUCTOS_POR_PAGINA = 12;
 
 function normalizeCategoria(str) {
